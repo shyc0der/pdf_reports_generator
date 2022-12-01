@@ -1,0 +1,26 @@
+{
+  "name": "pdf_reports_generator",
+  "version": "1.0.0",
+  "description": "helps generating reports in pdf format",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shyc0der/pdf_reports_generator.git"
+  },
+  "keywords": [
+    "pdfGenerator"
+  ],
+  "author": "shyC0der",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shyc0der/pdf_reports_generator/issues"
+  },
+  "homepage": "https://github.com/shyc0der/pdf_reports_generator#readme"
+}
