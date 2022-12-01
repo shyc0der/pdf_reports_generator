@@ -17,10 +17,14 @@
   "keywords": [
     "pdfGenerator"
   ],
-  "author": "shyC0der",
+  "author": "shyc0der",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/shyc0der/pdf_reports_generator/issues"
   },
-  "homepage": "https://github.com/shyc0der/pdf_reports_generator#readme"
+  "homepage": "https://github.com/shyc0der/pdf_reports_generator#readme",
+  "publishConfig": {
+    "@shyc0der:registry": "https://npm.pkg.github.com"
+  }
+
 }
