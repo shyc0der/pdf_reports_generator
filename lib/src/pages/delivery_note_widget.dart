@@ -21,7 +21,7 @@ class DeliveryNote implements PdfTemplate {
       );
 
   List<DescriptionItems> get _headerInfoDes => [
-        'DeliveryNote: DEL#${order["orderNo"]}',
+        'DeliveryNote: LSLDN${order["orderNo"]}',
         order['dateCreated'].toString(),
       ].map((e) => e.toDescriptionItems()).toList();
 
@@ -49,39 +49,28 @@ class DeliveryNote implements PdfTemplate {
               PdfTotalItems(
                   label: 'Total',
                   value:
-                      'Ksh. ${double.tryParse(
-                        (                        
-                        order['amount'] -
-                        (
-                          order['amount'] / (1+ (order['vat'] ?? 0) /100) *                       
-                        ((order['vat'] ?? 0) / 100)
-                        )
-                       ).toString())?.toStringAsFixed(2)}'),
+                      'Ksh. ${double.tryParse((order['amount'] - (order['amount'] / (1 + (order['vat'] ?? 0) / 100) * ((order['vat'] ?? 0) / 100))).toString())?.toStringAsFixed(2)}'),
               PdfTotalItems(
                   label: 'Vat@${order['vat'] ?? 0} %',
                   value:
-                      'Ksh. ${ double.tryParse(( order['amount'] / (1+ (order['vat'] ?? 0) /100) *                       
-                        ((order['vat'] ?? 0) / 100)).toString())?.toStringAsFixed(2)}'),
+                      'Ksh. ${double.tryParse((order['amount'] / (1 + (order['vat'] ?? 0) / 100) * ((order['vat'] ?? 0) / 100)).toString())?.toStringAsFixed(2)}'),
               PdfTotalItems(
                   label: 'Balance due',
-                  value: 'Ksh. ${double.tryParse((order['amount']).toString())?.ceil()}',
+                  value:
+                      'Ksh. ${double.tryParse((order['amount']).toString())?.ceil()}',
                   bold: true),
             ])),
-             SizedBox(height: 10),
+        SizedBox(height: 10),
         Align(
-          alignment: Alignment.bottomRight,
-          child:
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [         
-          Container(
-            padding: const EdgeInsets.all(18),
-            child: Text('Signature')),
-          Divider(
-            thickness: 2,
-          ),
-        ])),
-      
+            alignment: Alignment.bottomRight,
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Container(
+                  padding: const EdgeInsets.all(18), child: Text('Signature')),
+              Divider(
+                thickness: 2,
+              ),
+            ])),
       ];
 
   List<String> get _tableHeaders => tableHeaders;
@@ -106,7 +95,7 @@ class DeliveryNote implements PdfTemplate {
     headerInfo = _headerInfo;
   }
 
-   List<String> get tableHeaders {
+  List<String> get tableHeaders {
     List<String> _tableHeader;
     if (order['title'] == 'Dumping') {
       _tableHeader = const [
@@ -124,34 +113,19 @@ class DeliveryNote implements PdfTemplate {
         'NO OF DAYS',
         'TOTAL'
       ];
-    }
-    else if (order['title'] == 'Pozoolana') {
-      _tableHeader = const [
-        'No.',
-        'DESCRIPTION',
-        'Rate',
-        'Tonnes',
-        'TOTAL'
-      ];
-    } 
-    
-     else {
-      _tableHeader = const [
-        'No.',
-        'DESCRIPTION',
-        'QYT',
-        'UNIT PRICE',
-        'TOTAL'
-      ];
+    } else if (order['title'] == 'Pozoolana') {
+      _tableHeader = const ['No.', 'DESCRIPTION', 'Rate', 'Tonnes', 'TOTAL'];
+    } else {
+      _tableHeader = const ['No.', 'DESCRIPTION', 'QYT', 'UNIT PRICE', 'TOTAL'];
     }
     return _tableHeader;
   }
 
   List<List<String>> get contents {
     List<List<String>> content;
-    if (order['title'] == 'Dumping' || order['title'] == 'Hire'
-    || order['title'] == 'Pozoolana'
-    ) {
+    if (order['title'] == 'Dumping' ||
+        order['title'] == 'Hire' ||
+        order['title'] == 'Pozoolana') {
       content = [
         [
           '1',
@@ -174,5 +148,4 @@ class DeliveryNote implements PdfTemplate {
     }
     return content;
   }
-
 }

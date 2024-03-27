@@ -19,7 +19,7 @@ class QuotationWidget implements PdfTemplate {
         title: companyName,
         items: [companyEmail, companyAddress, companyPhoneNo],
         descriptionItems: [
-          'Quotation No: #QUO${order["orderNo"]}',
+          'Quotation No: LSLQUO${order["orderNo"]}',
           order['dateCreated'].toString(),
           //  'Date Delivery By: 2022-03-05',
         ].map((e) => e.toDescriptionItems()).toList(),

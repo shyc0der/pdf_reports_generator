@@ -21,7 +21,7 @@ class InvoiceWidget implements PdfTemplate  {
       );
 
   List<DescriptionItems> get _headerInfoDes => [
-        'InvoiceNo: INV#${order["orderNo"]}',
+        'InvoiceNo: LSLINV-${order["orderNo"]}',
         order['dateCreated'].toString(),
       ].map((e) => e.toDescriptionItems()).toList();
 
